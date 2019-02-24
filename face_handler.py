@@ -27,14 +27,15 @@ def get_face_embed_vector(align_pic):
 
 
 #添加图片索引
-def add_face_index(id,pic):
+def add_face_index(id,name,pic):
     align_face = get_align_pic(pic)
     if align_face is not None:
         #获取人脸特征
         face_vector = get_face_embed_vector(align_face)
+	print type(face_vector)
         # 插入数据
         embed = face_lmdb.face_lmdb()
-        embed.add_embed_to_lmdb(id,face_vector)
+        embed.add_embed_to_lmdb(id,name,face_vector)
         #更新索引
         annoy.create_index_from_lmdb()
         annoy.reload()
@@ -58,7 +59,11 @@ def detect_face(pic):
 
 if __name__=='__main__':
 
-    pic='web/images/lx1.jpeg'
-    add_face_index(1,pic)
+    pic='web/images/qxr.jpeg'
+    add_face_index(0,"rui",pic)
+
+    pic2='web/images/0000.jpeg'
+    add_face_index(1,"yali",pic2)
+
     #print query_face(pic)
     #print detect_face(pic)

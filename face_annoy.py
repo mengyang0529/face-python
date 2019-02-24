@@ -27,7 +27,9 @@ class face_annoy:
             wfp = evn.begin()
             annoy = AnnoyIndex(self.f)
             for key, value in wfp.cursor():
-                key = int(key)
+                str_list = key.split(',')
+                key = int(str_list[0])
+                name = str_list[1]
                 value = face_comm.str_to_embed(value)
                 annoy.add_item(key,value)
 

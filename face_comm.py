@@ -6,7 +6,7 @@ import  demjson
 #读取配置文件
 def get_conf(key,value):
     cf = ConfigParser.ConfigParser()
-    cf.read('config.ini')
+    cf.read('/home/nvidia/Documents/face-python/config.ini')
     return cf.get(key,value)
 
 
@@ -27,13 +27,13 @@ def fmt_data(arrData):
     return str_len+str
 
 def trans_string(retData):
-    fp=open('json_tmp.txt','w')
+    fp=open('/home/nvidia/Documents/face-python/json_tmp.txt','w')
     print >> fp, retData
     fp.close()
     return get_json_data()
 
 def get_json_data():
-    f = open('json_tmp.txt')
+    f = open('/home/nvidia/Documents/face-python/json_tmp.txt')
     line = f.readline()
     f.close()
     str_len = len(line)-1
